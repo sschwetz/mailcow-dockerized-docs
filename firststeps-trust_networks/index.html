@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/firststeps-trust_networks/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
     
     
       
@@ -20,7 +20,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.e35208c4.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.bde7dde4.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#default-unauthenticated-relaying" class="md-skip">
+        <a href="#unauthenticated-relaying" class="md-skip">
           Skip to content
         </a>
       
@@ -518,23 +518,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#default-unauthenticated-relaying" class="md-nav__link">
-    Default Unauthenticated Relaying
+  <a href="#unauthenticated-relaying" class="md-nav__link">
+    Unauthenticated relaying
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#permitting-unauthenticated-relaying" class="md-nav__link">
-    Permitting unauthenticated relaying.
-  </a>
-  
-    <nav class="md-nav" aria-label="Permitting unauthenticated relaying.">
+    <nav class="md-nav" aria-label="Unauthenticated relaying">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#permitting-ipv4-hosts" class="md-nav__link">
-    Permitting IPV4 hosts
+  <a href="#ipv4-hostssubnets" class="md-nav__link">
+    IPv4 hosts/subnets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv6-hostssubnets" class="md-nav__link">
+    IPv6 hosts/subnets
   </a>
   
 </li>
@@ -1893,23 +1893,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#default-unauthenticated-relaying" class="md-nav__link">
-    Default Unauthenticated Relaying
+  <a href="#unauthenticated-relaying" class="md-nav__link">
+    Unauthenticated relaying
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#permitting-unauthenticated-relaying" class="md-nav__link">
-    Permitting unauthenticated relaying.
-  </a>
-  
-    <nav class="md-nav" aria-label="Permitting unauthenticated relaying.">
+    <nav class="md-nav" aria-label="Unauthenticated relaying">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#permitting-ipv4-hosts" class="md-nav__link">
-    Permitting IPV4 hosts
+  <a href="#ipv4-hostssubnets" class="md-nav__link">
+    IPv4 hosts/subnets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv6-hostssubnets" class="md-nav__link">
+    IPv6 hosts/subnets
   </a>
   
 </li>
@@ -1938,31 +1938,31 @@
                 
                   <h1>Add trusted networks</h1>
                 
-                <h2 id="default-unauthenticated-relaying">Default Unauthenticated Relaying<a class="headerlink" href="#default-unauthenticated-relaying" title="Permanent link">&para;</a></h2>
-<p>By default mailcow considers all networks as untrusted, excluding its own IPV4_NETWORK and IPV6_NETWORK scopes. Though it is reasonable in most cases, there may be circumstances that you need to loosen this restriction 
-As default we use "mynetworks_style = subnet".</p>
-<h2 id="permitting-unauthenticated-relaying">Permitting unauthenticated relaying.<a class="headerlink" href="#permitting-unauthenticated-relaying" title="Permanent link">&para;</a></h2>
+                <p>By default mailcow considers <strong>all networks as untrusted</strong> excluding its own IPV4_NETWORK and IPV6_NETWORK scopes. Though it is reasonable in most cases, there may be circumstances that you need to loosen this restriction.</p>
+<p>By default mailcow uses <code>mynetworks_style = subnet</code> to determine internal subnets and leaves <code>mynetworks</code> unconfigured.</p>
+<p>If you decide to set <code>mynetworks</code>, Postfix ignores the mynetworks_style setting. This means you <strong>have to</strong> add the IPV4_NETWORK and IPV6_NETWORK scopes as well as loopback subnets manually!</p>
+<h2 id="unauthenticated-relaying">Unauthenticated relaying<a class="headerlink" href="#unauthenticated-relaying" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
+<p>Incorrect setup of <code>mynetworks</code> will allow your server to be used as an open relay. If abused, this <strong>will</strong> affect your ability to send emails and can take some time to be resolved.</p>
 </div>
-<p>Incorrect setup of mynetworks will allow your server to be used as an open relay to send unsolicitated bulk email. This <strong>will</strong> affect your ability to send emails to other mail servers, and can take some time to be reversed. If you don't know what this is for, than you do not need it.</p>
-<p>!!! Note  Do <strong>not</strong> remove the networks listed as <code>IPV4_NETWORK</code> and <code>IPV6_NETWORK</code> from your mailcow.conf, or the loopback ranges 127.0.0.0/8, [::ffff:127.0.0.0]/104, and [::1]. </p>
-<p>To change the my behaviour override the default value of <code>mynetworks</code> parameter through the <code>data/conf/postfix/extra.cf</code> configuration file.</p>
-<h3 id="permitting-ipv4-hosts">Permitting IPV4 hosts<a class="headerlink" href="#permitting-ipv4-hosts" title="Permanent link">&para;</a></h3>
-<p>To add <code>192.168.2.0/24</code> it may look like the configuration below:</p>
-<p>``` data/conf/postfix/extra.cf
-mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 192.0.2.0/24
-<div class="highlight"><pre><span></span><code>### Permitting IPv6 hosts
-
-The addition of IPv6 hosts is done the same as IPv4, however the subnet needs to be placed between [ ] with the netmask appearing after it. To add 2001:db8::/32 to be allowed to relay we would use the following configuration:
-
-``` data/conf/postfix/extra.cf
-mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 [2001:db8::]/32
-</code></pre></div></p>
+<h3 id="ipv4-hostssubnets">IPv4 hosts/subnets<a class="headerlink" href="#ipv4-hostssubnets" title="Permanent link">&para;</a></h3>
+<p>To add the subnet <code>192.168.2.0/24</code> to the trusted networks you may use the following configuration, depending on your IPV4_NETWORK and IPV6_NETWORK scopes:</p>
+<p>Edit <code>data/conf/postfix/extra.cf</code>:</p>
+<div class="highlight"><pre><span></span><code>mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 192.168.2.0/24
+</code></pre></div>
+<p>Run <code>docker-compose restart postfix-mailcow</code> to apply your new settings.</p>
+<h3 id="ipv6-hostssubnets">IPv6 hosts/subnets<a class="headerlink" href="#ipv6-hostssubnets" title="Permanent link">&para;</a></h3>
+<p>Adding IPv6 hosts is done the same as IPv4, however the subnet needs to be placed in brackets <code>[]</code> with the netmask appended.</p>
+<p>To add the subnet 2001:db8::/32 to the trusted networks you may use the following configuration, depending on your IPV4_NETWORK and IPV6_NETWORK scopes:</p>
+<p>Edit <code>data/conf/postfix/extra.cf</code>:</p>
+<div class="highlight"><pre><span></span><code>mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 [2001:db8::]/32
+</code></pre></div>
+<p>Run <code>docker-compose restart postfix-mailcow</code> to apply your new settings.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
+<p>More information about mynetworks can be found in the <a href="http://www.postfix.org/postconf.5.html#mynetworks">Postfix documentation</a>.</p>
 </div>
-<p>Further Information on Postfix's mynetwork can be located <a href="http://www.postfix.org/postconf.5.html#mynetworks" title="Postfix's mynetworks">here</a></p>
                 
               
               
@@ -2057,10 +2057,10 @@ mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      <script src="../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
       
         <script src="../clients.js"></script>
       

@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/prerequisite-dns/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
     
     
       
@@ -20,7 +20,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.e35208c4.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.bde7dde4.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
@@ -336,7 +336,7 @@
         
           <li class="md-nav__item">
   <a href="#email-test-for-spf-dkim-and-dmarc" class="md-nav__link">
-    Email Test for SPF, DKIM and DMARC:
+    Email test for SPF, DKIM and DMARC:
   </a>
   
 </li>
@@ -2000,7 +2000,7 @@
         
           <li class="md-nav__item">
   <a href="#email-test-for-spf-dkim-and-dmarc" class="md-nav__link">
-    Email Test for SPF, DKIM and DMARC:
+    Email test for SPF, DKIM and DMARC:
   </a>
   
 </li>
@@ -2098,11 +2098,11 @@ _submission._tcp    IN SRV     0        1      587      mail.example.org. (your 
 </ul>
 <h2 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h2>
 <h3 id="optional-dmarc-statistics">Optional DMARC Statistics<a class="headerlink" href="#optional-dmarc-statistics" title="Permanent link">&para;</a></h3>
-<p>If you are interested in statistics, you can additionally register with some of the many below DMARC statistic services, or self-host your own.</p>
+<p>If you are interested in statistics, you can additionally register with some of the many below DMARC statistic services - or self-host your own.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 </div>
-<p>It is worth considering that if you request DMARC statistic reports to your mailcow server, if there are issues with that domain you may not get accurate results. You can consider using an alternative email domain for receiving DMARC reports.</p>
+<p>It is worth considering that if you request DMARC statistic reports to your mailcow server and your mailcow server is not configured correctly to receive these reports, you may not get accurate and complete results. Please consider using an alternative email domain for receiving DMARC reports.</p>
 <p>It is worth mentioning, that the following suggestions are not a comprehensive list of all services and tools avaialble, but only a small few of the many choices.</p>
 <ul>
 <li><a href="https://gmail.com/postmaster">Postmaster Tool</a></li>
@@ -2114,10 +2114,10 @@ _submission._tcp    IN SRV     0        1      587      mail.example.org. (your 
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 </div>
-<p>The services may provide you with a TXT record, which you would insert into your DNS records as the provider specifies. This record will give you details about spam-classified mails by your domain. However, please ensure to read the providers documentation from the service you choose, as this process may vary and not all providers may use a TXT record.</p>
-<h3 id="email-test-for-spf-dkim-and-dmarc">Email Test for SPF, DKIM and DMARC:<a class="headerlink" href="#email-test-for-spf-dkim-and-dmarc" title="Permanent link">&para;</a></h3>
-<p>To test send an email to the email <code>check-auth at verifier.port25.com</code> and wait for a reply. You will get a report back that looks like the following:</p>
-<p><div class="highlight"><pre><span></span><code>==========================================================
+<p>These services may provide you with a TXT record you need to insert into your DNS records as the provider specifies. Please ensure to read the providers documentation from the service you choose as this process may vary.</p>
+<h3 id="email-test-for-spf-dkim-and-dmarc">Email test for SPF, DKIM and DMARC:<a class="headerlink" href="#email-test-for-spf-dkim-and-dmarc" title="Permanent link">&para;</a></h3>
+<p>To run a rudimentary email authentication check, send a mail to <code>check-auth at verifier.port25.com</code> and wait for a reply. You will find a report similar to the following:</p>
+<div class="highlight"><pre><span></span><code>==========================================================
 Summary of Results
 ==========================================================
 SPF check:          pass
@@ -2131,7 +2131,7 @@ Details:
 ==========================================================
 ....
 </code></pre></div>
-The full report will contain more technical details this is just the first section, we found this to be quite usful for testing both outgoing mail and spam scores.</p>
+<p>The full report will contain more technical details.</p>
 <h3 id="fully-qualified-domain-name-fqdn">Fully Qualified Domain Name (FQDN)<a class="headerlink" href="#fully-qualified-domain-name-fqdn" title="Permanent link">&para;</a></h3>
 <div class="footnote">
 <hr />
@@ -2235,10 +2235,10 @@ The full report will contain more technical details this is just the first secti
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      <script src="../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
       
         <script src="../clients.js"></script>
       
