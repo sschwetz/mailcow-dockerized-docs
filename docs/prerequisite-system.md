@@ -2,7 +2,6 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
 
 !!! warning
     Do **not** try to install mailcow on a Synology/QNAP device (any NAS), OpenVZ, LXC or other container platforms. KVM, ESX, Hyper-V and other full virtualization platforms are supported.
-    We **do not** recommend to use CentOS 8 anymore!
 
 !!! info
     - mailcow: dockerized requires [some ports](#default-ports) to be open for incoming connections, so make sure that your firewall is not blocking these.
@@ -23,7 +22,7 @@ Please make sure that your system has at least the following resources:
 | Disk                    | 20 GiB (without emails)                          |
 | System Type             | x86_64                                           |
 
-We recommend using any distribution listed as supported by Docker CE (check https://docs.docker.com/install/). We test on CentOS 7, Debian 9/10 and Ubuntu 18.04/20.04.
+We recommend using any distribution listed as supported by Docker CE (check https://docs.docker.com/install/). We test on CentOS 7, Debian 10/11 and Ubuntu 18.04/20.04.
 
 ClamAV and Solr can be greedy with RAM. You may disable them in `mailcow.conf` by settings `SKIP_CLAMD=y` and `SKIP_SOLR=y`.
 
@@ -70,9 +69,6 @@ If you have a firewall in front of mailcow, please make sure that these ports ar
 | Dovecot POP3S       | TCP      | 995    | dovecot-mailcow   | `${POPS_PORT}`                   |
 | Dovecot ManageSieve | TCP      | 4190   | dovecot-mailcow   | `${SIEVE_PORT}`                  |
 | HTTP(S)             | TCP      | 80/443 | nginx-mailcow     | `${HTTP_PORT}` / `${HTTPS_PORT}` |
-| XMPP (c2s)          | TCP      | 5222   | ejabberd-mailcow  | `${XMPP_C2S_PORT}`               |
-| XMPP (s2s)          | TCP      | 5269   | ejabberd-mailcow  | `${XMPP_C2S_PORT}`               |
-| XMPP (upload)       | TCP      | 5443   | ejabberd-mailcow  | `${XMPP_HTTPS_PORT}`             |
 
 To bind a service to an IP address, you can prepend the IP like this: `SMTP_PORT=1.2.3.4:25`
 
