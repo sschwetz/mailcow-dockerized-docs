@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 📥
-        uses: actions/checkout@v2.3.5
+        uses: actions/checkout@v2.4.0
         with:
           token: '${{ secrets.GHPAGES_ACTION_CHECKOUT_TOKEN_PAT }}'
 
@@ -16,7 +16,7 @@ jobs:
         run: |
           sudo apt-get -y update
           sudo apt-get -y install python3-pip
-          pip install mkdocs-material==7.3.5 pygments==2.10.0 mkdocs-redirects==1.0.3
+          pip install mkdocs-material==7.3.6 pygments==2.10.0 mkdocs-redirects==1.0.3
 
       - name: Build site 🔧
         run: |
